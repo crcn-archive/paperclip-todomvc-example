@@ -4,6 +4,7 @@ BindableCollection = require("bindable-collection"),
 todosTemplate = paperclip.template(require("./todos.pc"));
 
 
+// todos model
 var Todos = BindableCollection.extend({
   create: function (properties) {
     properties.todos = this;
@@ -11,6 +12,7 @@ var Todos = BindableCollection.extend({
   }
 });
 
+// todo model
 var Todo = BindableObject.extend({
   remove: function () {
     this.todos.splice(this.todos.indexOf(this), 1);
@@ -18,7 +20,9 @@ var Todo = BindableObject.extend({
 });
 
 
+// view controller
 var Controller = BindableObject.extend({
+  numTodos: 200,
   addNewTodo: function () {
     if (!this.newTodoText) return;
     this.todos.create({text:this.newTodoText});
@@ -30,7 +34,7 @@ var Controller = BindableObject.extend({
     for (var i = count||0; i--;) todos.push(new Todo({ text: si+i, todos: todos }));
     var start = Date.now();
     this.set("todos", todos);
-    console.log(Date.now() - start);
+    this.set("speed", Date.now() - start);
   },
   toggleCompleted: function () {
     this.set("completed", !this.completed);
