@@ -22,7 +22,7 @@ var Todo = BindableObject.extend({
 
 // view controller
 var Controller = BindableObject.extend({
-  numTodos: 200,
+  numTodos: 2000,
   addNewTodo: function () {
     if (!this.newTodoText) return;
     this.todos.create({text:this.newTodoText});

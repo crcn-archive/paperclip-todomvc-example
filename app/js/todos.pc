@@ -18,18 +18,18 @@
 
 
     <ul id="todo-list">
-      {{#each:todos,as:'model'}}
+      {{#each:todos}}
         <li>
-          <!--input type="checkbox" class="toggle" model={{<~>model.completed}}  />
-          <label>{{ model.text }}</label>
-          <button class="destroy" onClick={{~model.remove()}}></button-->
+          <!--input type="checkbox" class="toggle" model={{<~>completed}}  />
+          <label>{{ text }}</label>
+          <button class="destroy" onClick={{~remove()}}></button-->
 
           {{#if:!!edit}}
-            <input type="text" class="edit" model={{<~>model.text}} onEnter={{edit=false}} focus={{true}} />
+            <input type="text" class="edit" model={{<~>text}} onEnter={{edit=false}} focus={{true}} />
           {{/else}}
-            <input type="checkbox" class="toggle" model={{<~>model.completed}}  />
-            <label>{{ ~model.text }}</label>
-            <button class="destroy" onClick={{~model.remove()}}></button>
+            <input type="checkbox" class="toggle" model={{<~>completed}}  />
+            <label>{{ ~text }}</label>
+            <button class="destroy" onClick={{~remove()}}></button>
           {{/}}
         </li>
       {{/}}
