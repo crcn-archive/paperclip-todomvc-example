@@ -1,8 +1,10 @@
- <input type="text" model={{<~>numTodos}} onEnter={{addTodos(numTodos)}}></input> <input type="submit" value="add todos" onClick={{addTodos(numTodos)}}></input>
+<input type="text" value={{<~>numTodos}} onEnter={{addTodos(numTodos)}}></input> 
+<input type="submit" value="add todos" onClick={{addTodos(numTodos)}}></input>
 
-  {{#if:speed}}
-    {{speed}} ms
-  {{/}}
+<show when={{speed}}>
+  {{speed}} ms
+</show>
+
 
 <section id="todoapp">
 
@@ -10,62 +12,50 @@
   
   <header id="header">
     <h1>todos</h1>
-    <input type="text" id="new-todo" placeholder="What needs to be done?" model={{<~>newTodoText}} onEnter={{addNewTodo()}} focus={{true}} />
+    <input type="text" id="new-todo" placeholder="What needs to be done?" value={{<~>newTodoText}} onEnter={{addNewTodo()}} focus={{true}} />
   </header>
 
 
   <section id="main">
-
-
-    <ul id="todo-list">
-      {{#each:todos}}
-        <li>
-          <!--input type="checkbox" class="toggle" model={{<~>completed}}  />
-          <label>{{ text }}</label>
-          <button class="destroy" onClick={{~remove()}}></button-->
-
-          {{#if:!!edit}}
-            <input type="text" class="edit" model={{<~>text}} onEnter={{edit=false}} focus={{true}} />
-          {{/else}}
-            <input type="checkbox" class="toggle" model={{<~>completed}}  />
-            <label>{{ ~text }}</label>
-            <button class="destroy" onClick={{~remove()}}></button>
-          {{/}}
-        </li>
-      {{/}}
+    <ul id="todo-list" repeat.each={{todos}}>
+      <li>
+        <input type="checkbox" class="toggle" onClick={{edit=true}} value={{<~>completed}}  />
+        <label>{{ ~text }}</label>
+        <button class="destroy" onClick={{~remove()}}></button>
+      </li>
     </ul>
 
-    {{#if: todos.length}}
-      <input type="checkbox" id="toggle-all" model={{<~>todos.allCompleted}} onClick={{toggleCompleted()}} />
-    {{/}}
+    <show when={{todos.length}}>
+      <input type="checkbox" id="toggle-all" value={{<~>todos.allCompleted}} onClick={{toggleCompleted()}} />
+    </show>
 
   </section>
 
 
-  {{#if:todos.length}}
+  <show when={{todos.length}}>
     <footer id="footer">
       <span id="todo-count">
         <strong>{{todos.length - todos.numCompleted}}</strong> todos left
       </span>
       <ul id="filters">
         <!--li>
-          <a data-href="allTodos" data-bind="{{ css: { selected: models.states.page == 'all' }}}">All</a>
+          <a data-href="allTodos" class={{{ selected: models.states.page == 'all' }}>All</a>
         </li>
         <li>
-          <a data-href="activeTodos" data-bind="{{ css: { selected: models.states.page == 'active' }}}">Active</a>
+          <a data-href="activeTodos" class={{{ selected: models.states.page == 'active' }}}>Active</a>
         </li>
         <li>
-          <a data-href="completedTodos" data-bind="{{ css: { selected: models.states.page == 'completed' }}}">Completed</a>
+          <a data-href="completedTodos" class={{{ selected: models.states.page == 'completed' }}}>Completed</a>
         </li-->
       </ul>
 
-      {{#if:todos.numCompleted}}
-        <button id="clear-completed" data-bind="{{ onClick: todos.clearCompleted() }}">
-          Clear completed ({{todos.numCompleted}})
+      <show when={{todos.length}}>
+        <button id="clear-completed" onClick={{clearCompleted()}}>
+          Clear completed <!--({{todos.numCompleted}})-->
         </button>
-      {{/}}
+      </show>
     </footer>
-  {{/}}
+  </show>
 
 </section>
 
