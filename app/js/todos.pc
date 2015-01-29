@@ -18,10 +18,15 @@
 
   <section id="main">
     <ul id="todo-list" repeat.each={{todos}}>
-      <li>
-        <input type="checkbox" class="toggle" onClick={{edit=true}} value={{<~>completed}}  />
-        <label>{{ ~text }}</label>
-        <button class="destroy" onClick={{~remove()}}></button>
+      <li switch class={{{completed:completed,editing:edit}}}>
+        <show when={{edit}}>
+          <input type="text" class="edit" value={{<~>text}} onEnter={{edit=false}} focus={{true}} />
+        </show>
+        <show>
+          <input type="checkbox" class="toggle" value={{<~>completed}}  />
+          <label onClick={{edit=true}}>{{ ~text }}</label>
+          <button class="destroy" onClick={{~remove()}}></button>
+        </show>
       </li>
     </ul>
 
