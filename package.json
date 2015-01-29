@@ -19,9 +19,8 @@
   "dependencies": {
     "bindable-collection": "0.0.2",
     "bindable-object": "0.0.x",
-    "paperclip": "0.7.x"
-  },
-  "devDependencies": {
+    "express": "^4.11.1",
+    "paperclip": "0.7.x",
     "browserify": "^3.46.1",
     "browserify-middleware": "^4.1.0",
     "compression": "^1.3.0",
@@ -33,5 +32,7 @@
     "sinon": "^1.10.2",
     "through": "^2.3.6",
     "uglify-js": "^2.4.16"
+  },
+  "devDependencies": {
   }
 }
