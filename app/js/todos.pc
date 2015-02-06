@@ -1,7 +1,7 @@
 <input type="text" value={{<~>numTodos}} onEnter={{addTodos(numTodos)}}></input> 
 <input type="submit" value="add todos" onClick={{addTodos(numTodos)}}></input>
 
-<show when={{speed}}>
+<show when={{speed!=null}}>
   {{speed}} ms
 </show>
 

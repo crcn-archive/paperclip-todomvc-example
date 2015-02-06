@@ -32,9 +32,10 @@ var Controller = BindableObject.extend({
     if (!si) si = 0;
     var todos = new Todos();
     var now = Date.now();
-    for (var i = count||0; i--;) todos.push(new Todo({ text: si+i, todos: todos }));
+    for (var i = count||0; i--;) todos.push(new Todo({ text: Math.random(), todos: todos }));
     var start = Date.now();
     this.set("todos", todos);
+    view.runloop.runNow(); // trigger re-render now
     this.set("speed", Date.now() - start);
   },
   toggleCompleted: function () {
@@ -50,7 +51,8 @@ var Controller = BindableObject.extend({
   }
 });
 
-var controller = window.controller = new Controller({todos:new Todos()});
+var controller = window.controller = new Controller({todos:new Todos()}),
+view = todosTemplate.view(controller);
 
 
-document.body.appendChild(todosTemplate.view(controller).render());
+document.body.appendChild(view.render());

@@ -1,0 +1,64 @@
+<div>
+
+  <section id="todoapp">
+
+
+    
+    <header id="header">
+      <h1>todos</h1>
+      <input type="text" id="new-todo" placeholder="What needs to be done?" value={{<~>newTodoText}} onEnter={{addNewTodo()}} focus={{true}} />
+    </header>
+
+
+    <section id="main">
+      <ul id="todo-list" repeat.each={{todos}} repeat.as='todo'>
+        <li switch class={{{completed:completed,editing:edit}}}>
+          <show when={{edit}}>
+            <input type="text" class="edit" value={{<~>todo.text}} onEnter={{edit=false}} focus={{true}} />
+          </show>
+          <show>
+            <input type="checkbox" class="toggle" value={{<~>completed}}  />
+            <label onClick={{edit=true}}>{{ ~todo.text }}</label>
+            <button class="destroy" onClick={{~todo.remove()}}></button>
+          </show>
+        </li>
+      </ul>
+
+      <show when={{todos.length}}>
+        <input type="checkbox" id="toggle-all" value={{<~>todos.allCompleted}} onClick={{toggleCompleted()}} />
+      </show>
+
+    </section>
+
+
+    <show when={{todos.length}}>
+      <footer id="footer">
+        <span id="todo-count">
+          <strong>{{todos.length - todos.numCompleted}}</strong> todos left
+        </span>
+        <ul id="filters">
+          <!--li>
+            <a data-href="allTodos" class={{{ selected: models.states.page == 'all' }}>All</a>
+          </li>
+          <li>
+            <a data-href="activeTodos" class={{{ selected: models.states.page == 'active' }}}>Active</a>
+          </li>
+          <li>
+            <a data-href="completedTodos" class={{{ selected: models.states.page == 'completed' }}}>Completed</a>
+          </li-->
+        </ul>
+
+        <show when={{todos.length}}>
+          <button id="clear-completed" onClick={{clearCompleted()}}>
+            Clear completed <!--({{todos.numCompleted}})-->
+          </button>
+        </show>
+      </footer>
+    </show>
+
+  </section>
+
+  <footer id="info">
+    <p>Double-click to edit a todo</p>
+  </footer>
+</div>
