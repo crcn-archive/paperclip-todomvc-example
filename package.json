@@ -29,6 +29,7 @@
     "mocha": "1.20.1",
     "noselector": "0.0.x",
     "paperclip": "^1.2.9",
+    "protoclass": "0.0.6",
     "sinon": "^1.10.2",
     "through": "^2.3.6",
     "uglify-js": "^2.4.16"

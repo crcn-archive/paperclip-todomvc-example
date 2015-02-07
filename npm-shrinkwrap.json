@@ -4631,6 +4631,11 @@
         }
       }
     },
+    "protoclass": {
+      "version": "0.0.6",
+      "from": "protoclass@*",
+      "resolved": "http://registry.npmjs.org/protoclass/-/protoclass-0.0.6.tgz"
+    },
     "sift": {
       "version": "0.0.18",
       "from": "sift@0.0.x",
