@@ -28,7 +28,7 @@
     "istanbul": "^0.2.11",
     "mocha": "1.20.1",
     "noselector": "0.0.x",
-    "paperclip": "^1.1.9",
+    "paperclip": "^1.2.9",
     "sinon": "^1.10.2",
     "through": "^2.3.6",
     "uglify-js": "^2.4.16"

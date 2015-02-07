@@ -1,7 +1,9 @@
 var paperclip = require("paperclip"),
 BindableObject = require("bindable-object"),
 BindableCollection = require("bindable-collection"),
-todosTemplate = paperclip.template(require("./todos.pc"), paperclip);
+todosTemplate = paperclip.template(require("./todos.pc"), {
+  accessorClass: require("./accessor")
+});
 
 
 // todos model
